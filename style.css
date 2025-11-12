@@ -30,15 +30,15 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.8;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.5s, color 0.5s;
 }
 
 .container {
-    max-width: 1000px;
-    margin: auto;
+    max-width: 1200px;
+    margin: 20px auto;
     background: var(--card-background);
     padding: 45px;
     border-radius: 20px;
@@ -199,9 +199,16 @@ body.dark-mode .contact-info a:hover {
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 12px;
     color: var(--primary-color);
-    font-size: 2em;
+    font-size: 2.2em;
     margin-bottom: 25px;
-    font-weight: 600;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.section h3 i {
+    margin-right: 15px;
+    font-size: 0.9em;
 }
 
 .summary p {
@@ -335,12 +342,20 @@ body.dark-mode #back-to-top {
 }
 
 /* --- Responsive Design --- */
+@media (max-width: 1200px) {
+    .container {
+        margin: 20px;
+    }
+}
+
 @media (max-width: 768px) {
     body {
-        padding: 15px;
+        padding: 0;
     }
     .container {
         padding: 30px;
+        margin: 0;
+        border-radius: 0;
     }
     .main-header {
         flex-direction: column;
