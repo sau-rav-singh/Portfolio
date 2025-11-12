@@ -7,332 +7,7 @@
     <link rel="icon" href="logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #5a6877;
-            --background-color: #f4f7f9;
-            --text-color: #333333;
-            --card-background: #ffffff;
-            --shadow-color: rgba(44, 62, 80, 0.15);
-            --skill-background: #eaf0f6;
-            --border-color: #eee;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body.dark-mode {
-            --primary-color: #4e8cff;
-            --secondary-color: #a9b4c2;
-            --background-color: #1a1a1a;
-            --text-color: #e0e0e0;
-            --card-background: #2c2c2c;
-            --shadow-color: rgba(0, 0, 0, 0.4);
-            --skill-background: #3a3a3a;
-            --border-color: #444;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 20px;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .container {
-            max-width: 960px;
-            margin: auto;
-            background: var(--card-background);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px var(--shadow-color);
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .theme-switcher {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .theme-switcher input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background-color: var(--primary-color);
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-
-        .main-header {
-            display: flex;
-            align-items: center;
-            text-align: left;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
-
-        .main-header img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin-right: 30px;
-            border: 3px solid var(--primary-color);
-            object-fit: cover;
-        }
-
-        header h1 {
-            margin: 0;
-            color: var(--primary-color);
-            font-size: 2.8em;
-            font-weight: 700;
-        }
-
-        header h2 {
-            margin: 5px 0 15px;
-            color: var(--secondary-color);
-            font-size: 1.4em;
-            font-weight: 400;
-        }
-
-        .contact-info {
-            font-size: 1em;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .contact-info a, .contact-info span {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-info a:hover {
-            color: #516a83;
-        }
-
-        .contact-info i {
-            margin-right: 8px;
-        }
-
-        .section {
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section h3 {
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            color: var(--primary-color);
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .summary p {
-            font-size: 1.1em;
-            text-align: justify;
-        }
-
-        .experience-item {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-left: 4px solid var(--primary-color);
-            position: relative;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .experience-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px var(--shadow-color);
-        }
-
-        .experience-item::before {
-            content: '';
-            position: absolute;
-            left: -12px;
-            top: 25px;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            border: 4px solid var(--background-color);
-        }
-
-        .job-title {
-            font-weight: 600;
-            font-size: 1.2em;
-            color: var(--text-color);
-        }
-
-        .company-name {
-            font-style: normal;
-            font-weight: 400;
-            color: var(--secondary-color);
-            margin-bottom: 5px;
-        }
-
-        .duration {
-            font-size: 0.9em;
-            color: #999;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .skills-category {
-            margin-bottom: 20px;
-        }
-
-        .skills-category h4 {
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
-        .skills-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .skills-list li {
-            background: var(--skill-background);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 1em;
-            font-weight: 400;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .skills-list li:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        ul.job-details {
-            list-style: disc;
-            margin-top: 10px;
-            padding-left: 25px;
-        }
-
-        ul.job-details li {
-            margin-bottom: 8px;
-        }
-
-        .education-item {
-            margin-bottom: 15px;
-        }
-
-        #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: none;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            line-height: 50px;
-            font-size: 24px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: opacity 0.3s, background-color 0.3s;
-            z-index: 1000;
-        }
-
-        #back-to-top:hover {
-            background-color: #516a83;
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            .container {
-                padding: 25px;
-            }
-            .main-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            .main-header img {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-            header h1 {
-                font-size: 2.2em;
-            }
-            .skills-list {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .contact-info {
-                font-size: 0.9em;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -360,14 +35,14 @@
         </div>
     </header>
 
-    <div class="section summary">
+    <div class="section summary animated-item">
         <h3>Summary</h3>
         <p>
             ISTQB and SAFe certified Senior Test Automation Engineer with 9+ years of experience specializing in test automation for capital markets and investment banking applications. Proficient in Order Management Systems and the Trade Life Cycle. Skilled in designing robust automation frameworks for UI and API using Java, Selenium, Playwright, and REST Assured. Adept at integrating automation solutions with GitLab CI/CD pipelines, Docker, and cloud-based infrastructure to enhance test efficiency.
         </p>
     </div>
 
-    <div class="section">
+    <div class="section animated-item">
         <h3>Skills</h3>
         <div class="skills-category">
             <h4>Languages & Databases</h4>
@@ -411,7 +86,7 @@
     <div class="section">
         <h3>Experience</h3>
 
-        <div class="experience-item">
+        <div class="experience-item animated-item">
             <div class="job-title">Assistant Vice President</div>
             <div class="company-name">Citi</div>
             <span class="duration">06/2025 - Current</span>
@@ -421,7 +96,7 @@
             </ul>
         </div>
 
-        <div class="experience-item">
+        <div class="experience-item animated-item">
             <div class="job-title">Senior Associate</div>
             <div class="company-name">Bank of New York</div>
             <span class="duration">11/2021 - 05/2025</span>
@@ -435,7 +110,7 @@
             </ul>
         </div>
 
-        <div class="experience-item">
+        <div class="experience-item animated-item">
             <div class="job-title">Senior Software Engineer</div>
             <div class="company-name">Hexaware</div>
             <span class="duration">01/2020 - 11/2021</span>
@@ -446,7 +121,7 @@
             </ul>
         </div>
 
-        <div class="experience-item">
+        <div class="experience-item animated-item">
             <div class="job-title">Associate</div>
             <div class="company-name">Cognizant</div>
             <span class="duration">10/2018 - 01/2020</span>
@@ -457,7 +132,7 @@
             </ul>
         </div>
 
-        <div class="experience-item">
+        <div class="experience-item animated-item">
             <div class="job-title">Systems Engineer</div>
             <div class="company-name">Tata Consultancy Services</div>
             <span class="duration">03/2016 - 10/2018</span>
@@ -469,7 +144,7 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section animated-item">
         <h3>Education</h3>
         <div class="education-item">
             <div class="job-title">Bachelor of Engineering (Mechanical Engineering)</div>
@@ -483,7 +158,7 @@
 <a id="back-to-top" href="#top"><i class="fas fa-arrow-up"></i></a>
 
 <script>
-    const sections = document.querySelectorAll('.section');
+    const animatedItems = document.querySelectorAll('.animated-item');
     const themeToggle = document.getElementById('theme-toggle');
     const backToTopButton = document.getElementById('back-to-top');
 
@@ -497,8 +172,8 @@
         threshold: 0.1
     });
 
-    sections.forEach(section => {
-        observer.observe(section);
+    animatedItems.forEach(item => {
+        observer.observe(item);
     });
 
     themeToggle.addEventListener('change', () => {
