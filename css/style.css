@@ -4,7 +4,7 @@
     --background-color: #ecf0f1;
     --text-color: #333;
     --card-background: #fff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.08); /* Softer shadow */
     --skill-background: #e0e0e0;
     --border-color: #ddd;
     --hover-color: #333333;
@@ -20,7 +20,7 @@ body.dark-mode {
     --background-color: #1c1c1c;
     --text-color: #f1f1f1;
     --card-background: #2d2d2d;
-    --shadow-color: rgba(0, 0, 0, 0.4);
+    --shadow-color: rgba(0, 0, 0, 0.3); /* Softer shadow for dark mode */
     --skill-background: #444;
     --border-color: #555;
     --hover-color: #dddddd;
@@ -28,7 +28,7 @@ body.dark-mode {
 
 body {
     font-family: 'Lato', sans-serif;
-    line-height: 1.8;
+    line-height: 1.6; /* Adjusted for better readability */
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
@@ -138,7 +138,7 @@ header h1 {
     margin: 0;
     color: var(--primary-color);
     font-family: 'Montserrat', sans-serif;
-    font-size: 3em;
+    font-size: 3.2em;
     font-weight: 700;
 }
 
@@ -146,7 +146,7 @@ header h2 {
     margin: 8px 0 18px;
     color: var(--secondary-color);
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.6em;
     font-weight: 400;
 }
 
@@ -160,13 +160,14 @@ header h2 {
 .contact-info a, .contact-info span {
     color: var(--primary-color);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s;
     display: flex;
     align-items: center;
 }
 
 .contact-info a:hover {
     color: var(--hover-color);
+    transform: translateY(-3px);
 }
 
 body.dark-mode .contact-info a:hover {
@@ -202,7 +203,7 @@ body.dark-mode .contact-info a:hover {
     padding-bottom: 12px;
     color: var(--primary-color);
     font-family: 'Montserrat', sans-serif;
-    font-size: 2.2em;
+    font-size: 2.3em;
     margin-bottom: 25px;
     font-weight: 700;
     display: flex;
@@ -212,10 +213,11 @@ body.dark-mode .contact-info a:hover {
 .section h3 i {
     margin-right: 15px;
     font-size: 0.9em;
+    color: var(--primary-color);
 }
 
 .summary p {
-    font-size: 1.15em;
+    font-size: 1.1em;
     text-align: justify;
 }
 
@@ -224,13 +226,18 @@ body.dark-mode .contact-info a:hover {
     padding: 25px;
     border-left: 5px solid var(--primary-color);
     position: relative;
-    transition: transform 0.4s, box-shadow 0.4s;
+    transition: transform 0.4s, box-shadow 0.4s, background-color 0.4s;
     border-radius: 8px;
 }
 
 .experience-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 25px var(--shadow-color);
+    box-shadow: 0 15px 30px var(--shadow-color);
+    background-color: var(--skill-background);
+}
+
+body.dark-mode .experience-item:hover {
+    background-color: #3a3a3a;
 }
 
 .experience-item::before {
@@ -252,7 +259,7 @@ body.dark-mode .contact-info a:hover {
 
 .job-title {
     font-weight: 700;
-    font-size: 1.3em;
+    font-size: 1.4em;
     color: var(--text-color);
 }
 
@@ -272,6 +279,16 @@ body.dark-mode .contact-info a:hover {
 
 .skills-category {
     margin-bottom: 25px;
+    padding: 20px;
+    background: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skills-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--shadow-color);
 }
 
 .skills-category h4 {
@@ -320,6 +337,16 @@ ul.job-details li {
 
 .education-item {
     margin-bottom: 20px;
+    padding: 20px;
+    background: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.education-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--shadow-color);
 }
 
 #back-to-top {
@@ -371,21 +398,66 @@ body.dark-mode #back-to-top {
     }
     .main-header img {
         margin-right: 0;
-        margin-bottom: 25px;
+        margin-bottom: 20px; /* Adjusted margin */
     }
     header h1 {
-        font-size: 2.5em;
+        font-size: 2.8em; /* Adjusted font size */
+    }
+    header h2 {
+        font-size: 1.4em; /* Adjusted font size */
+    }
+    .section h3 {
+        font-size: 2em; /* Adjusted font size */
+    }
+    .summary p {
+        font-size: 1em; /* Adjusted font size */
+    }
+    .job-title {
+        font-size: 1.3em; /* Adjusted font size */
     }
     .skills-list {
         justify-content: center;
     }
+    .skills-list li {
+        font-size: 1em; /* Adjusted font size */
+    }
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 20px; /* Adjusted padding */
+    }
+    header h1 {
+        font-size: 2.2em; /* Adjusted font size */
+    }
+    header h2 {
+        font-size: 1.2em; /* Adjusted font size */
+    }
     .contact-info {
-        font-size: 1em;
+        font-size: 0.9em; /* Adjusted font size */
         flex-direction: column;
         align-items: center;
-        gap: 15px;
+        gap: 10px; /* Adjusted gap */
+    }
+    .section h3 {
+        font-size: 1.8em; /* Adjusted font size */
+    }
+    .summary p {
+        font-size: 0.95em; /* Adjusted font size */
+    }
+    .job-title {
+        font-size: 1.2em; /* Adjusted font size */
+    }
+    .skills-list li {
+        font-size: 0.9em; /* Adjusted font size */
+        padding: 8px 15px; /* Adjusted padding */
+    }
+    #back-to-top {
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        font-size: 24px;
+        bottom: 25px;
+        right: 25px;
     }
 }
