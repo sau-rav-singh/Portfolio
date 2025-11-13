@@ -226,11 +226,11 @@ body.dark-mode .contact-info a:hover {
 .experience-item:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 30px var(--shadow-color);
-    background-color: var(--skill-background);
+    /* background-color: var(--skill-background); */ /* Removed grey highlight */
 }
 
 body.dark-mode .experience-item:hover {
-    background-color: #3a3a3a;
+    /* background-color: #3a3a3a; */ /* Removed grey highlight */
 }
 
 .experience-item::before {
@@ -282,11 +282,11 @@ body.dark-mode .experience-item:hover {
 .skills-category:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px var(--shadow-color);
-    background-color: #d0d0d0; /* Changed from var(--skill-background) for better contrast */
+    /* background-color: #d0d0d0; */ /* Removed grey highlight */
 }
 
 body.dark-mode .skills-category:hover {
-    background-color: #3a3a3a;
+    /* background-color: #3a3a3a; */ /* Removed grey highlight */
 }
 
 .skills-category h4 {
@@ -386,11 +386,11 @@ ul.job-details li {
 .education-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px var(--shadow-color);
-    background-color: var(--skill-background);
+    /* background-color: var(--skill-background); */ /* Removed grey highlight */
 }
 
 body.dark-mode .education-item:hover {
-    background-color: #3a3a3a;
+    /* background-color: #3a3a3a; */ /* Removed grey highlight */
 }
 
 #back-to-top {
