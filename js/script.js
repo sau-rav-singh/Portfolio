@@ -58,44 +58,37 @@ const animatedItems = document.querySelectorAll('.animated-item');
         }
     });
 
-    // --- Section Indicator Bubble Logic (Revised for top-sticky behavior) ---
     const sectionIndicatorBubble = document.getElementById('section-indicator-bubble');
     const mainHeader = document.querySelector('.main-header');
 
-    // 1. Observer to control bubble visibility (based on main header)
-    const headerVisibilityObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                // Main header is out of view, show the bubble
-                sectionIndicatorBubble.classList.add('visible');
-            } else {
-                // Main header is in view, hide the bubble
-                sectionIndicatorBubble.classList.remove('visible');
-            }
-        });
-    }, { threshold: 0 }); // Trigger as soon as any part of the main header leaves/enters
+    // --- Section Indicator Bubble Logic ---
+    function updateBubbleContent() { // This function runs on every scroll event
+        let sectionForBubble = null;
 
-    if (mainHeader) {
-        headerVisibilityObserver.observe(mainHeader);
-    }
-
-    // 2. Logic to update bubble content based on the current top-most section
-    function updateBubbleContent() {
-        let currentSection = null;
-
-        // Find the last section that has scrolled past the top of the viewport
+        // 1. Determine which section's title should be displayed.
+        // We find the LAST section that has its top edge scrolled above our trigger point (75px).
         for (const section of sections) {
-            // The 75px offset accounts for the top padding of the bubble and gives a little buffer
-            if (section.getBoundingClientRect().top < 75) {
-                currentSection = section;
+            if (section.getBoundingClientRect().top <= 75) {
+                sectionForBubble = section;
             }
         }
 
-        if (currentSection) {
-            const sectionTitle = currentSection.querySelector('h3').textContent.trim();
-            if (sectionIndicatorBubble.textContent !== sectionTitle) {
-                sectionIndicatorBubble.textContent = sectionTitle;
-            }
+        // 2. Check if the bubble should be visible at all.
+        const mainHeaderVisible = mainHeader.getBoundingClientRect().bottom > 0;
+        const h3 = sectionForBubble ? sectionForBubble.querySelector('h3') : null;
+        const h3IsOffscreen = h3 ? h3.getBoundingClientRect().bottom < 15 : false;
+
+        // The bubble should be visible ONLY if a section is active, its h3 is offscreen, AND the main header is hidden.
+        const shouldBeVisible = sectionForBubble && h3IsOffscreen && !mainHeaderVisible;
+
+        if (shouldBeVisible) {
+            // 3. If it should be visible, update the text and add the 'visible' class.
+            sectionIndicatorBubble.textContent = h3.textContent.trim();
+            sectionIndicatorBubble.classList.add('visible');
+        } else {
+            // 4. If it should NOT be visible, just remove the 'visible' class.
+            // We DO NOT update the text here, which prevents the content flash.
+            sectionIndicatorBubble.classList.remove('visible');
         }
     }
 
