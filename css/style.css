@@ -53,64 +53,57 @@ body {
     margin-bottom: 20px;
 }
 
-.theme-switcher {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-
-.theme-switcher input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
+/* Styles for the new theme toggle container */
+#theme-toggle-container {
+    position: relative; /* Needed for absolute positioning of icons */
+    width: 30px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed */
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
 }
 
-.slider:before {
+#theme-toggle-container:hover {
+    transform: scale(1.1);
+}
+
+#theme-toggle-container .moon-icon,
+#theme-toggle-container .sun-icon {
+    font-size: 24px; /* Icon size */
     position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the icon */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    color: var(--primary-color); /* Inherit primary color */
 }
 
-input:checked + .slider {
-    background-color: var(--primary-color);
+/* Initial state: moon visible, sun hidden */
+#theme-toggle-container .moon-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
 }
 
-body.dark-mode input:checked + .slider {
-    background-color: #ccc;
+#theme-toggle-container .sun-icon {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-90deg); /* Start rotated for animation */
 }
 
-body.dark-mode .slider:before {
-    background-color: #1c1c1c;
+/* Dark mode state: sun visible, moon hidden */
+body.dark-mode #theme-toggle-container .moon-icon {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg); /* Rotate out */
 }
 
-body.dark-mode input:checked + .slider:before {
-    background-color: var(--primary-color);
+body.dark-mode #theme-toggle-container .sun-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg); /* Rotate in */
 }
 
 
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
+/* Main header styles */
 .main-header {
     display: flex;
     align-items: center;
@@ -283,12 +276,17 @@ body.dark-mode .experience-item:hover {
     background: var(--card-background);
     border-radius: 8px;
     box-shadow: 0 5px 15px var(--shadow-color);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 
 .skills-category:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px var(--shadow-color);
+    background-color: var(--skill-background);
+}
+
+body.dark-mode .skills-category:hover {
+    background-color: #3a3a3a;
 }
 
 .skills-category h4 {
@@ -318,7 +316,7 @@ body.dark-mode .experience-item:hover {
 .skills-list li:hover {
     background-color: var(--primary-color);
     color: #fff;
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.05);
 }
 
 body.dark-mode .skills-list li:hover {
@@ -341,12 +339,17 @@ ul.job-details li {
     background: var(--card-background);
     border-radius: 8px;
     box-shadow: 0 5px 15px var(--shadow-color);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 
 .education-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px var(--shadow-color);
+    background-color: var(--skill-background);
+}
+
+body.dark-mode .education-item:hover {
+    background-color: #3a3a3a;
 }
 
 #back-to-top {

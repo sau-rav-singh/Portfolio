@@ -1,6 +1,6 @@
 const animatedItems = document.querySelectorAll('.animated-item');
-    const themeToggle = document.getElementById('theme-toggle');
     const backToTopButton = document.getElementById('back-to-top');
+    const themeToggleContainer = document.getElementById('theme-toggle-container'); // Get reference to the container
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -20,10 +20,8 @@ const animatedItems = document.querySelectorAll('.animated-item');
     function setTheme(theme) {
         if (theme === 'dark') {
             document.body.classList.add('dark-mode');
-            themeToggle.checked = true;
         } else {
             document.body.classList.remove('dark-mode');
-            themeToggle.checked = false;
         }
     }
 
@@ -32,18 +30,15 @@ const animatedItems = document.querySelectorAll('.animated-item');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     if (savedTheme) {
-        // If a theme is saved in localStorage, use it
         setTheme(savedTheme);
     } else if (prefersDark) {
-        // If no theme is saved, but browser prefers dark, set dark mode
         setTheme('dark');
     } else {
-        // Default to light mode if no preference is found
         setTheme('light');
     }
 
-    // Theme toggle event listener
-    themeToggle.addEventListener('change', () => {
+    // Theme toggle container click event listener
+    themeToggleContainer.addEventListener('click', () => {
         if (document.body.classList.contains('dark-mode')) {
             localStorage.setItem('theme', 'light'); // User is switching to light
             setTheme('light');
