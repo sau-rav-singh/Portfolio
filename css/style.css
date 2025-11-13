@@ -326,13 +326,13 @@ body.dark-mode .skills-category:hover {
     position: relative; /* For absolute positioning of the level text */
 }
 
-.skills-list li:hover {
+.skills-list li:hover:not(.no-hover) {
     background-color: var(--primary-color);
     color: #fff;
     transform: translateY(-3px) scale(1.05);
 }
 
-body.dark-mode .skills-list li:hover {
+body.dark-mode .skills-list li:hover:not(.no-hover) {
     color: #000;
 }
 
@@ -363,25 +363,6 @@ body.dark-mode .skills-list li:hover {
 .skills-list li[data-rating="3"] .skill-rating::before { width: 60%; }
 .skills-list li[data-rating="4"] .skill-rating::before { width: 80%; }
 .skills-list li[data-rating="5"] .skill-rating::before { width: 100%; }
-
-/* Skill level text (Beginner, Intermediate) - Removed as per user request */
-/*
-.skills-list li::after {
-    content: attr(data-level);
-    position: absolute;
-    right: 125px;
-    font-size: 0.8em;
-    color: var(--secondary-color);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    white-space: nowrap;
-    pointer-events: none;
-}
-
-.skills-list li:hover::after {
-    opacity: 1;
-}
-*/
 
 ul.job-details {
     list-style: disc;
@@ -484,12 +465,6 @@ body.dark-mode #back-to-top {
     .skills-list li {
         font-size: 1em; /* Adjusted font size */
     }
-    /* Adjust position of skill level text for smaller screens - Removed as per user request */
-    /*
-    .skills-list li::after {
-        right: 115px;
-    }
-    */
 }
 
 @media (max-width: 480px) {
@@ -521,12 +496,6 @@ body.dark-mode #back-to-top {
         font-size: 0.9em; /* Adjusted font size */
         padding: 8px 15px; /* Adjusted padding */
     }
-    /* Adjust position of skill level text for smaller screens - Removed as per user request */
-    /*
-    .skills-list li::after {
-        right: 105px;
-    }
-    */
     #back-to-top {
         width: 45px;
         height: 45px;
