@@ -453,6 +453,12 @@ body.dark-mode #back-to-top {
     .section h3 {
         font-size: 2em; /* Adjusted font size */
     }
+    .contact-info {
+        /* Use CSS Grid for a perfect 2x2 layout */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Create a 2-column grid */
+        gap: 15px;
+    }
     .summary p {
         font-size: 1em; /* Adjusted font size */
     }
@@ -498,9 +504,7 @@ body.dark-mode #back-to-top {
     }
     .contact-info {
         font-size: 0.9em; /* Adjusted font size */
-        flex-direction: column;
-        align-items: center;
-        gap: 10px; /* Adjusted gap */
+        /* Grid layout is inherited from the 768px breakpoint */
     }
     .section h3 {
         font-size: 1.8em; /* Adjusted font size */
