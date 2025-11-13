@@ -465,6 +465,19 @@ body.dark-mode #back-to-top {
     .skills-list li {
         font-size: 1em; /* Adjusted font size */
     }
+
+    /* Disable hover effects on small screens */
+    .skills-list li:hover:not(.no-hover) {
+        background-color: var(--skill-background); /* Revert to default background */
+        color: var(--text-color); /* Revert to default text color */
+        transform: none; /* Remove any transform */
+    }
+
+    .skills-category:hover {
+        transform: none; /* Remove any transform */
+        box-shadow: 0 5px 15px var(--shadow-color); /* Revert to default shadow */
+        background-color: var(--card-background); /* Revert to default background */
+    }
 }
 
 @media (max-width: 480px) {
