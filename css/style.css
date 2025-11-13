@@ -460,7 +460,7 @@ body.dark-mode #back-to-top {
         font-size: 1.3em; /* Adjusted font size */
     }
     .skills-list {
-        justify-content: center;
+        justify-content: flex-start; /* Changed from center to flex-start */
     }
     .skills-list li {
         font-size: 1em; /* Adjusted font size */
