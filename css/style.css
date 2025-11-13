@@ -234,15 +234,20 @@ body.dark-mode .contact-info a:hover {
 }
 
 .experience-item::before {
-    content: '';
+    content: '\f5a0';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
     position: absolute;
-    left: -15px;
-    top: 30px;
-    width: 24px;
-    height: 24px;
-    background: var(--primary-color);
+    left: -17px;
+    top: 25px;
+    font-size: 24px;
+    color: var(--primary-color);
+    background: var(--background-color);
     border-radius: 50%;
-    border: 5px solid var(--background-color);
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
 }
 
 .job-title {
