@@ -478,6 +478,12 @@ body.dark-mode #back-to-top {
         box-shadow: 0 5px 15px var(--shadow-color); /* Revert to default shadow */
         background-color: var(--card-background); /* Revert to default background */
     }
+
+    .experience-item:hover {
+        transform: none; /* Remove any transform */
+        box-shadow: none; /* Remove any shadow */
+        background-color: transparent; /* Revert to default background */
+    }
 }
 
 @media (max-width: 480px) {
