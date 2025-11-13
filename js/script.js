@@ -1,8 +1,10 @@
 const animatedItems = document.querySelectorAll('.animated-item');
     const backToTopButton = document.getElementById('back-to-top');
     const themeToggleContainer = document.getElementById('theme-toggle-container'); // Get reference to the container
+    const sections = document.querySelectorAll('.section');
 
-    const observer = new IntersectionObserver(entries => {
+
+    const animationObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
@@ -13,7 +15,7 @@ const animatedItems = document.querySelectorAll('.animated-item');
     });
 
     animatedItems.forEach(item => {
-        observer.observe(item);
+        animationObserver.observe(item);
     });
 
     // Function to set the theme
@@ -55,3 +57,50 @@ const animatedItems = document.querySelectorAll('.animated-item');
             backToTopButton.style.display = 'none';
         }
     });
+
+    // --- Section Indicator Bubble Logic (Revised for top-sticky behavior) ---
+    const sectionIndicatorBubble = document.getElementById('section-indicator-bubble');
+    const mainHeader = document.querySelector('.main-header');
+
+    // 1. Observer to control bubble visibility (based on main header)
+    const headerVisibilityObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                // Main header is out of view, show the bubble
+                sectionIndicatorBubble.classList.add('visible');
+            } else {
+                // Main header is in view, hide the bubble
+                sectionIndicatorBubble.classList.remove('visible');
+            }
+        });
+    }, { threshold: 0 }); // Trigger as soon as any part of the main header leaves/enters
+
+    if (mainHeader) {
+        headerVisibilityObserver.observe(mainHeader);
+    }
+
+    // 2. Logic to update bubble content based on the current top-most section
+    function updateBubbleContent() {
+        let currentSection = null;
+
+        // Find the last section that has scrolled past the top of the viewport
+        for (const section of sections) {
+            // The 75px offset accounts for the top padding of the bubble and gives a little buffer
+            if (section.getBoundingClientRect().top < 75) {
+                currentSection = section;
+            }
+        }
+
+        if (currentSection) {
+            const sectionTitle = currentSection.querySelector('h3').textContent.trim();
+            if (sectionIndicatorBubble.textContent !== sectionTitle) {
+                sectionIndicatorBubble.textContent = sectionTitle;
+            }
+        }
+    }
+
+    // Listen to the scroll event to update the bubble in real-time
+    window.addEventListener('scroll', updateBubbleContent);
+
+    // Also run it once on load in case the page loads scrolled down
+    updateBubbleContent();

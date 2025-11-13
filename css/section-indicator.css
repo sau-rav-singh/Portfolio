@@ -1,0 +1,27 @@
+/* --- Section Indicator Bubble --- */
+#section-indicator-bubble {
+    position: fixed;
+    top: 15px; /* Add some space from the top */
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%); /* Start hidden above the viewport */
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1em;
+    z-index: 1001; /* Ensure it's above other content */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none; /* So it doesn't block mouse clicks */
+    white-space: nowrap;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#section-indicator-bubble.visible {
+    transform: translateX(-50%) translateY(0); /* Slide into view */
+    opacity: 1;
+    visibility: visible;
+}
