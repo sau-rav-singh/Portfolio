@@ -282,7 +282,7 @@ body.dark-mode .experience-item:hover {
 .skills-category:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px var(--shadow-color);
-    background-color: var(--skill-background);
+    background-color: #d0d0d0; /* Changed from var(--skill-background) for better contrast */
 }
 
 body.dark-mode .skills-category:hover {
